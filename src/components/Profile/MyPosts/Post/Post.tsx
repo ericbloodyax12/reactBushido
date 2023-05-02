@@ -3,6 +3,7 @@ import "./Post.css";
 
 export type PostPropsType  = {
     message: string
+    likes: string
 }
 export function Post(props: PostPropsType) {
 
@@ -11,7 +12,7 @@ export function Post(props: PostPropsType) {
             <img className={"post-img"} src={"https://m.buro247.ru/images/leonardo-di-caprio-ruling-wall-street.jpg"}
             />  {props.message}
             <div>
-                <span>1 likes</span>
+                <span>{props.likes}</span>
             </div>
 
         </div>

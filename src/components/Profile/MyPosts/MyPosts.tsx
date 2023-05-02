@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import "./MyPosts.css";
+import "./myPosts.css";
 import {Post, PostPropsType} from "./Post/Post";
-import {postMessage} from "./Post/data";
+import {getRandomInt, postMessage} from "./Post/data";
 
 export type MyPostsPropsType  = {
 
@@ -18,6 +18,7 @@ export function MyPosts(props: MyPostsPropsType) {
     const [posts,setPosts] = useState<Array<PostDataType> | undefined>(undefined);
 
     useEffect(() => {
+        console.log("в юс эфекте")
         fetch('https://jsonplaceholder.typicode.com/comments')
         .then(response => response.json())
         .then((json:PostDataType[]) => {
@@ -27,7 +28,7 @@ export function MyPosts(props: MyPostsPropsType) {
             setPosts(filtredPosts)
         })
     },[])
-
+    console.log("в самой компанента перед ретерном")
     return (
         <div>
             My posts
@@ -35,7 +36,7 @@ export function MyPosts(props: MyPostsPropsType) {
                 New Post
             </div>
             {posts?.map((el) => {
-                return  <Post key={el.id} message={el.body}/>
+                return  <Post key={el.id} message={el.body} likes={`${getRandomInt(11)} likes`}/>
             })}
 
         </div>

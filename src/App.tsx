@@ -1,9 +1,10 @@
 import React, {Profiler} from 'react';
 
-import './App.css';
+import './app.css';
 import {Header} from "./components/Header/Header";
 import {SideBar} from "./components/SideBar/SideBar";
 import {Profile} from "./components/Profile/Profile";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
 
 export function App() {
@@ -11,7 +12,11 @@ export function App() {
     <div className="app_wrapper">
      <Header/>
      <SideBar/>
-     <Profile/>
+        <div className={"app_content"}>
+            <Profile/>
+            <Dialogs/>
+        </div>
+
     </div>
   );
 }

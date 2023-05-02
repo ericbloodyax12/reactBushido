@@ -4,7 +4,8 @@
   grid-template-areas:
     "h h"
     "l c";
-    grid-template-rows: 250px 1fr;
+    grid-template-rows:
+            80px 1fr;
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/
 
@@ -13,19 +14,17 @@
 .app_header {
   grid-area: h;
   background-color: lawngreen;
+  height: 70px;
 }
-.app_header-img {
-  background-color: lawngreen;
-  height: 100px;
-  width: 200px;
-}
+
 .app_ul {
   grid-area: l;
   background-color: white;
 }
 .app_content {
-  background-color: whitesmoke;
+  background-color: #cbc1c1;
   grid-area: c;
+  color: black;
 }
 .app_content-img {
   width: 960px;
