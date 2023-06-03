@@ -2,33 +2,35 @@ import React, {useEffect, useState} from 'react';
 import "./myPosts.css";
 import {Post, PostPropsType} from "./Post/Post";
 import {getRandomInt, postMessage} from "./Post/data";
+import {getPosts, getPosts2} from "../../../services/posts";
 
 export type MyPostsPropsType  = {
 
 }
-type PostDataType = {
-    "postId": number,
+export type PostDataType = {
     "id": number,
-    "name":  string,
-    "email": string ,
-    "body": string
+    "title": string ,
+    "body": string,
+    "userId": number
 }
+
+
 export function MyPosts(props: MyPostsPropsType) {
 
     const [posts,setPosts] = useState<Array<PostDataType> | undefined>(undefined);
 
-    useEffect(() => {
-        console.log("в юс эфекте")
-        fetch('https://jsonplaceholder.typicode.com/comments')
-        .then(response => response.json())
-        .then((json:PostDataType[]) => {
-            const filtredPosts = json.filter((el) => {
-                return  el.postId === 1
-            })
-            setPosts(filtredPosts)
-        })
+
+    useEffect(  () =>  {
+       async function fetchData() {
+            try {
+                const posts = await getPosts2()
+                setPosts(posts)
+            } catch (error) {
+                console.log('Ошибка:', error);
+            }
+        }
+        fetchData()
     },[])
-    console.log("в самой компанента перед ретерном")
     return (
         <div>
             My posts
@@ -36,7 +38,7 @@ export function MyPosts(props: MyPostsPropsType) {
                 New Post
             </div>
             {posts?.map((el) => {
-                return  <Post key={el.id} message={el.body} likes={`${getRandomInt(11)} likes`}/>
+                return  <Post key={el.id} message={el.title} likes={`${getRandomInt(11)} likes`}/>
             })}
 
         </div>

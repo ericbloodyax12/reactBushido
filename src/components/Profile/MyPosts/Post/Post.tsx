@@ -5,6 +5,8 @@ export type PostPropsType  = {
     message: string
     likes: string
 }
+
+
 export function Post(props: PostPropsType) {
 
     return (
